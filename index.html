@@ -13,12 +13,9 @@ body {
   color: #f5f5f5;
 }
 
-h1, h2 {
-  text-align: center;
-}
-
 header {
   padding: 30px 10px;
+  text-align: center;
 }
 
 header h1 {
@@ -110,11 +107,12 @@ footer {
 
 <header>
   <h1>🎵 The Soundtrack Cafe</h1>
-  <p style="text-align:center;">Scan • Order • Relax</p>
+  <p>Scan • Order • Relax</p>
 </header>
 
 <div class="container">
 
+<!-- SANDWICHES -->
 <div class="section">
 <h2>SANDWICHES</h2>
 
@@ -131,11 +129,11 @@ footer {
     <span>Paneer Tikka Sandwich – ₹240</span>
     <button onclick="addToCart('Paneer Tikka Sandwich',240)">ADD</button>
   </div>
-  <div class="desc">Grilled paneer with spicy tandoori flavour.</div>
+  <div class="desc">Grilled paneer with tandoori flavour.</div>
+</div>
 </div>
 
-</div>
-
+<!-- BEVERAGES -->
 <div class="section">
 <h2>BEVERAGES</h2>
 
@@ -144,7 +142,7 @@ footer {
     <span>Cappuccino – ₹140</span>
     <button onclick="addToCart('Cappuccino',140)">ADD</button>
   </div>
-  <div class="desc">Classic coffee with milk foam.</div>
+  <div class="desc">Classic hot coffee.</div>
 </div>
 
 <div class="item">
@@ -152,9 +150,8 @@ footer {
     <span>Cafe Latte – ₹150</span>
     <button onclick="addToCart('Cafe Latte',150)">ADD</button>
   </div>
-  <div class="desc">Smooth creamy milk coffee.</div>
+  <div class="desc">Smooth milk coffee.</div>
 </div>
-
 </div>
 
 </div>
@@ -193,7 +190,25 @@ function renderCart() {
 }
 
 function placeOrder() {
-  alert("Order placed! Please show this screen at counter.");
+  if (cart.length === 0) {
+    alert("Please add items first");
+    return;
+  }
+
+  let message = "🧾 *New Order - Soundtrack Cafe*%0A%0A";
+
+  cart.forEach((item, index) => {
+    message += (index + 1) + ". " + item.name + " - ₹" + item.price + "%0A";
+  });
+
+  message += "%0A*Total:* ₹" + total;
+
+  let phone = "919370569122"; 
+  // 🔴 इथे counter चा WhatsApp number टाक (91 सह)
+
+  let url = "https://wa.me/" + phone + "?text=" + message;
+  window.open(url, "_blank");
+
   cart = [];
   total = 0;
   renderCart();
