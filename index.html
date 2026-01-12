@@ -167,25 +167,26 @@ footer {
 <footer>
 © The Soundtrack Cafe
 </footer>
-
 <script>
 let cart = [];
 let total = 0;
 
 function addToCart(name, price) {
-  cart.push({name, price});
+  cart.push({ name: name, price: price });
   total += price;
   renderCart();
 }
 
 function renderCart() {
-  let list = document.getElementById("cartItems");
+  const list = document.getElementById("cartItems");
   list.innerHTML = "";
-  cart.forEach(item => {
-    let li = document.createElement("li");
-    li.textContent = item.name + " - ₹" + item.price;
+
+  cart.forEach((item, i) => {
+    const li = document.createElement("li");
+    li.innerText = (i + 1) + ". " + item.name + " - ₹" + item.price;
     list.appendChild(li);
   });
+
   document.getElementById("total").innerText = total;
 }
 
@@ -195,48 +196,23 @@ function placeOrder() {
     return;
   }
 
-  let orderId = "SC" + Math.floor(Math.random() * 9000 + 1000);
-  let time = new Date().toLocaleTimeString();
+  const orderId = "SC-" + Date.now().toString().slice(-4);
+  const time = new Date().toLocaleTimeString("en-IN");
 
-  let message = "🧾 *NEW ORDER - THE SOUNDTRACK CAFE*%0A";
-  message += "*Order ID:* " + orderId + "%0A";
-  message += "*Time:* " + time + "%0A%0A";
+  let message =
+    "🧾 *NEW ORDER - THE SOUNDTRACK CAFE*%0A" +
+    "*Order ID:* " + orderId + "%0A" +
+    "*Time:* " + time + "%0A%0A";
 
-  cart.forEach((item, index) => {
-    message += (index + 1) + ". " + item.name + " - ₹" + item.price + "%0A";
+  cart.forEach((item, i) => {
+    message += (i + 1) + ". " + item.name + " - ₹" + item.price + "%0A";
   });
 
-  message += "%0A*Total Amount:* ₹" + total;
-  message += "%0A%0APlease prepare this order.";
+  message += "%0A*TOTAL:* ₹" + total;
 
-  let phone = "919370569122"; // counter WhatsApp number
-  let url = "https://wa.me/" + phone + "?text=" + message;
+  const phone = "91XXXXXXXXXX"; // 🔴 इथे number टाक
+  const url = "https://wa.me/" + phone + "?text=" + message;
 
-  window.open(url, "_blank");
-
-  cart = [];
-  total = 0;
-  renderCart();
-}
-
-
-  if (cart.length === 0) {
-    alert("Please add items first");
-    return;
-  }
-
-  let message = "🧾 *New Order - Soundtrack Cafe*%0A%0A";
-
-  cart.forEach((item, index) => {
-    message += (index + 1) + ". " + item.name + " - ₹" + item.price + "%0A";
-  });
-
-  message += "%0A*Total:* ₹" + total;
-
-  let phone = "919370569122"; 
-  // 🔴 इथे counter चा WhatsApp number टाक (91 सह)
-
-  let url = "https://wa.me/" + phone + "?text=" + message;
   window.open(url, "_blank");
 
   cart = [];
@@ -245,5 +221,3 @@ function placeOrder() {
 }
 </script>
 
-</body>
-</html>
