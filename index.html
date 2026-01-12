@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Soundtrack Cafe | Order Menu</title>
+<title>The Soundtrack Cafe | Order</title>
 
 <style>
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: Arial, sans-serif;
   background: #0e0e0e;
-  color: #f5f5f5;
+  color: #fff;
 }
 
 header {
-  padding: 30px 10px;
   text-align: center;
+  padding: 20px;
 }
 
 header h1 {
@@ -23,50 +23,32 @@ header h1 {
 }
 
 .container {
-  max-width: 900px;
+  max-width: 800px;
   margin: auto;
   padding: 20px;
-}
-
-.section {
-  margin-top: 40px;
-}
-
-.section h2 {
-  color: #f5c16c;
-  border-bottom: 1px solid #333;
-  padding-bottom: 8px;
 }
 
 .item {
   background: #1a1a1a;
   padding: 12px;
-  margin: 15px 0;
+  margin-bottom: 12px;
   border-radius: 8px;
 }
 
-.item-title {
+.item-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: bold;
-}
-
-.desc {
-  font-size: 0.85rem;
-  opacity: 0.7;
-  margin-top: 5px;
 }
 
 button {
   background: #f5c16c;
   border: none;
   padding: 6px 10px;
-  cursor: pointer;
   font-weight: bold;
+  cursor: pointer;
 }
 
-/* CART */
 #cart {
   position: fixed;
   bottom: 15px;
@@ -75,7 +57,6 @@ button {
   padding: 15px;
   border-radius: 10px;
   width: 260px;
-  box-shadow: 0 0 10px #000;
 }
 
 #cart h3 {
@@ -91,14 +72,7 @@ button {
 }
 
 #cart li {
-  font-size: 0.85rem;
-  margin-bottom: 6px;
-}
-
-footer {
-  text-align: center;
-  padding: 30px;
-  opacity: 0.6;
+  font-size: 14px;
 }
 </style>
 </head>
@@ -112,51 +86,29 @@ footer {
 
 <div class="container">
 
-<!-- SANDWICHES -->
-<div class="section">
-<h2>SANDWICHES</h2>
-
 <div class="item">
-  <div class="item-title">
+  <div class="item-top">
     <span>Veg Cheese Sandwich – ₹220</span>
     <button onclick="addToCart('Veg Cheese Sandwich',220)">ADD</button>
   </div>
-  <div class="desc">Fresh veggies with cream cheese, served with chips.</div>
 </div>
 
 <div class="item">
-  <div class="item-title">
+  <div class="item-top">
     <span>Paneer Tikka Sandwich – ₹240</span>
     <button onclick="addToCart('Paneer Tikka Sandwich',240)">ADD</button>
   </div>
-  <div class="desc">Grilled paneer with tandoori flavour.</div>
 </div>
-</div>
-
-<!-- BEVERAGES -->
-<div class="section">
-<h2>BEVERAGES</h2>
 
 <div class="item">
-  <div class="item-title">
+  <div class="item-top">
     <span>Cappuccino – ₹140</span>
     <button onclick="addToCart('Cappuccino',140)">ADD</button>
   </div>
-  <div class="desc">Classic hot coffee.</div>
-</div>
-
-<div class="item">
-  <div class="item-title">
-    <span>Cafe Latte – ₹150</span>
-    <button onclick="addToCart('Cafe Latte',150)">ADD</button>
-  </div>
-  <div class="desc">Smooth milk coffee.</div>
-</div>
 </div>
 
 </div>
 
-<!-- CART -->
 <div id="cart">
   <h3>Your Order</h3>
   <ul id="cartItems"></ul>
@@ -164,15 +116,12 @@ footer {
   <button onclick="placeOrder()">Place Order</button>
 </div>
 
-<footer>
-© The Soundtrack Cafe
-</footer>
 <script>
 let cart = [];
 let total = 0;
 
 function addToCart(name, price) {
-  cart.push({ name: name, price: price });
+  cart.push({ name, price });
   total += price;
   renderCart();
 }
@@ -180,13 +129,11 @@ function addToCart(name, price) {
 function renderCart() {
   const list = document.getElementById("cartItems");
   list.innerHTML = "";
-
   cart.forEach((item, i) => {
     const li = document.createElement("li");
     li.innerText = (i + 1) + ". " + item.name + " - ₹" + item.price;
     list.appendChild(li);
   });
-
   document.getElementById("total").innerText = total;
 }
 
@@ -196,7 +143,7 @@ function placeOrder() {
     return;
   }
 
-  const orderId = "SC-" + Date.now().toString().slice(-4);
+  const orderId = "SC-" + Math.floor(Math.random() * 9000 + 1000);
   const time = new Date().toLocaleTimeString("en-IN");
 
   let message =
@@ -210,7 +157,7 @@ function placeOrder() {
 
   message += "%0A*TOTAL:* ₹" + total;
 
-  const phone = "91XXXXXXXXXX"; // 🔴 इथे number टाक
+  const phone = "91XXXXXXXXXX"; // इथे WhatsApp number टाक
   const url = "https://wa.me/" + phone + "?text=" + message;
 
   window.open(url, "_blank");
@@ -221,3 +168,5 @@ function placeOrder() {
 }
 </script>
 
+</body>
+</html>
