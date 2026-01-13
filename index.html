@@ -1,221 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Soundtrack Cafe | Menu</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Soundtrack Cafe | Menu</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0e0e0e;
-      color: #f5f5f5;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0e0e0e;
+  color: #f5f5f5;
+}
 
-    h1, h2 {
-      text-align: center;
-      letter-spacing: 1px;
-    }
+h1, h2 {
+  text-align: center;
+  letter-spacing: 1px;
+}
 
-    .container {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
+.container {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
 
-    header {
-      padding: 30px 10px;
-      animation: fadeDown 1s ease;
-    }
+header {
+  padding: 30px 10px;
+}
 
-    header h1 {
-      font-size: 2.2rem;
-      color: #f5c16c;
-    }
+header h1 {
+  font-size: 2.2rem;
+  color: #f5c16c;
+}
 
-    header p {
-      text-align: center;
-      opacity: 0.8;
-    }
+.section {
+  margin-top: 40px;
+}
 
-    .section {
-      margin-top: 40px;
-      animation: fadeUp 1s ease;
-    }
+.section h2 {
+  color: #f5c16c;
+  border-bottom: 1px solid #333;
+  padding-bottom: 8px;
+}
 
-    .section h2 {
-      color: #f5c16c;
-      border-bottom: 1px solid #333;
-      padding-bottom: 8px;
-    }
+.item {
+  margin: 15px 0;
+  padding: 12px;
+  background: #1a1a1a;
+  border-radius: 8px;
+}
 
-    .item {
-      margin: 15px 0;
-      padding: 12px;
-      background: #1a1a1a;
-      border-radius: 8px;
-      transition: transform 0.3s ease, background 0.3s ease;
-    }
+.item-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    .item:hover {
-      transform: translateX(5px);
-      background: #242424;
-    }
+.action {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 
-    .item-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      font-weight: bold;
-    }
+.price {
+  color: #f5c16c;
+}
 
-    .name {
-      max-width: 65%;
-    }
+.add-btn {
+  background: #f5c16c;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+}
 
-    .action {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+.desc {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin-top: 5px;
+}
 
-    .price {
-      color: #f5c16c;
-      font-weight: bold;
-    }
+/* CONTINUE BAR */
+#continueBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #111;
+  padding: 15px;
+  display: none;
+  justify-content: center;
+}
 
-    .add-btn {
-      background: #f5c16c;
-      color: #000;
-      border: none;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
+#continueBar button {
+  background: #f5c16c;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+}
 
-    .add-btn:hover {
-      background: #ffd98a;
-      transform: scale(1.05);
-    }
+/* CART */
+#cart {
+  display: none;
+  background: #111;
+  padding: 20px;
+  margin-top: 40px;
+  border-radius: 10px;
+}
 
-    .desc {
-      font-size: 0.85rem;
-      opacity: 0.75;
-      margin-top: 5px;
-    }
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
 
-    footer {
-      text-align: center;
-      padding: 30px 10px;
-      font-size: 0.8rem;
-      opacity: 0.6;
-    }
+.qty-btn {
+  padding: 2px 8px;
+  margin: 0 5px;
+  cursor: pointer;
+}
 
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: none;
+}
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+.place-btn {
+  background: #f5c16c;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 25px;
+  margin-top: 15px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>🎵 The Soundtrack Cafe</h1>
-  <p>Where every bite has a vibe</p>
+<h1>🎵 The Soundtrack Cafe</h1>
+<p style="text-align:center;opacity:0.8">Where every bite has a vibe</p>
 </header>
 
 <div class="container">
 
-  <!-- SANDWICHES -->
-  <div class="section">
-    <h2>SANDWICHES</h2>
+<div class="section">
+<h2>SANDWICHES</h2>
 
-    <div class="item">
-      <div class="item-title">
-        <span class="name">Veg Cheese Sandwich</span>
-        <div class="action">
-          <span class="price">₹220</span>
-          <button class="add-btn">Add</button>
-        </div>
-      </div>
-      <div class="desc">
-        Fresh tomato, onion, cucumber & lettuce topped with cream cheese sauce.
-        Served with green chutney, salad & chips.
-      </div>
+<div class="item">
+  <div class="item-title">
+    <span>Veg Cheese Sandwich</span>
+    <div class="action">
+      <span class="price">₹220</span>
+      <button class="add-btn" onclick="addItem('Veg Cheese Sandwich',220)">Add</button>
     </div>
-
-    <div class="item">
-      <div class="item-title">
-        <span class="name">Tikka Sandwich (Paneer / Mushroom)</span>
-        <div class="action">
-          <span class="price">₹240</span>
-          <button class="add-btn">Add</button>
-        </div>
-      </div>
-      <div class="desc">
-        Pan grilled paneer or mushrooms tossed in in-house tandoori masala,
-        topped with cheese. Served with salad & chips.
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-title">
-        <span class="name">Spicy Chilly Sandwich</span>
-        <div class="action">
-          <span class="price">₹240</span>
-          <button class="add-btn">Add</button>
-        </div>
-      </div>
-      <div class="desc">
-        Extra spicy sandwich loaded with schezwan chutney.
-        Served with salad & chips.
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-title">
-        <span class="name">Double Decker Sandwich</span>
-        <div class="action">
-          <span class="price">₹280</span>
-          <button class="add-btn">Add</button>
-        </div>
-      </div>
-      <div class="desc">
-        Double layered sandwich with veggies & paneer topped with
-        thousand island sauce. Served with fries.
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-title">
-        <span class="name">Croque Madame</span>
-        <div class="action">
-          <span class="price">₹300</span>
-          <button class="add-btn">Add</button>
-        </div>
-      </div>
-      <div class="desc">
-        Classic French open sandwich filled with cream cheese sauce
-        & topped with egg half fry.
-      </div>
-    </div>
-
   </div>
 </div>
 
-<footer>
-  © The Soundtrack Cafe | Crafted with vibes 🎶
-</footer>
+<div class="item">
+  <div class="item-title">
+    <span>Tikka Sandwich (Paneer / Mushroom)</span>
+    <div class="action">
+      <span class="price">₹240</span>
+      <button class="add-btn" onclick="addItem('Tikka Sandwich',240)">Add</button>
+    </div>
+  </div>
+</div>
+
+<div class="item">
+  <div class="item-title">
+    <span>Spicy Chilly Sandwich</span>
+    <div class="action">
+      <span class="price">₹240</span>
+      <button class="add-btn" onclick="addItem('Spicy Chilly Sandwich',240)">Add</button>
+    </div>
+  </div>
+</div>
+
+<div class="item">
+  <div class="item-title">
+    <span>Double Decker Sandwich</span>
+    <div class="action">
+      <span class="price">₹280</span>
+      <button class="add-btn" onclick="addItem('Double Decker Sandwich',280)">Add</button>
+    </div>
+  </div>
+</div>
+
+<div class="item">
+  <div class="item-title">
+    <span>Croque Madame</span>
+    <div class="action">
+      <span class="price">₹300</span>
+      <button class="add-btn" onclick="addItem('Croque Madame',300)">Add</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- CART -->
+<div id="cart">
+<h2>Your Order</h2>
+<div id="cartItems"></div>
+
+<h3 id="total"></h3>
+
+<input id="tableNo" placeholder="Enter Table Number">
+
+<button class="place-btn" onclick="placeOrder()">Place Order on WhatsApp</button>
+</div>
+
+</div>
+
+<div id="continueBar">
+<button onclick="openCart()">Continue</button>
+</div>
+
+<script>
+let cart = {};
+
+function addItem(name, price) {
+  if (!cart[name]) {
+    cart[name] = { price, qty: 1 };
+  } else {
+    cart[name].qty++;
+  }
+  document.getElementById("continueBar").style.display = "flex";
+}
+
+function openCart() {
+  document.getElementById("cart").style.display = "block";
+  document.getElementById("continueBar").style.display = "none";
+  renderCart();
+}
+
+function renderCart() {
+  let html = "";
+  let total = 0;
+
+  for (let item in cart) {
+    total += cart[item].price * cart[item].qty;
+    html += `
+      <div class="cart-item">
+        <span>${item}</span>
+        <span>
+          <button class="qty-btn" onclick="changeQty('${item}',-1)">-</button>
+          ${cart[item].qty}
+          <button class="qty-btn" onclick="changeQty('${item}',1)">+</button>
+        </span>
+      </div>
+    `;
+  }
+
+  document.getElementById("cartItems").innerHTML = html;
+  document.getElementById("total").innerText = "Total: ₹" + total;
+}
+
+function changeQty(item, change) {
+  cart[item].qty += change;
+  if (cart[item].qty <= 0) delete cart[item];
+  renderCart();
+}
+
+function placeOrder() {
+  let table = document.getElementById("tableNo").value;
+  if (!table) {
+    alert("Enter table number");
+    return;
+  }
+
+  let msg = `*New Order*%0ATable No: ${table}%0A%0A`;
+  let total = 0;
+
+  for (let item in cart) {
+    msg += `${item} x ${cart[item].qty}%0A`;
+    total += cart[item].price * cart[item].qty;
+  }
+
+  msg += `%0A*Total: ₹${total}*`;
+
+  window.open(`https://wa.me/919370569122?text=${msg}`, "_blank");
+}
+</script>
 
 </body>
 </html>
